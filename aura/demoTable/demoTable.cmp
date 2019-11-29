@@ -1,0 +1,47 @@
+<!--
+  @File Name          : demoTable.cmp
+  @Description        : 
+  @Author             : Roman Hnativ @ RedTag
+  @Group              : 
+  @Last Modified By   : Roman Hnativ @ RedTag
+  @Last Modified On   : 11/21/2019, 4:25:40 PM
+  @Modification Log   : 
+  Ver       Date            Author      		    Modification
+  1.0    11/21/2019   Roman Hnativ @ RedTag     Initial Version
+-->
+
+<aura:component
+  controller="demoController"
+  implements="flexipage:availableForAllPageTypes,force:hasRecordId,force:lightningQuickActionWithoutHeader"
+  access="global"
+>
+  <aura:attribute name="products" type="Object" />
+  <aura:attribute name="productColumns" type="List" />
+
+  <aura:handler name="init" value="{!this}" action="{!c.init}" />
+  <div>
+    <div style="height: 250px">
+      <lightning:datatable
+        columns="{!v.productColumns}"
+        data="{!v.products}"
+        keyField="Id"
+        aura:id="dataTableObject"      
+        suppressBottomBar="true"
+      />
+    </div>
+    <div class="slds-clearfix" style="margin-top: 10px;">
+      <div class="slds-float_left"
+        ><lightning:button
+          label="Add"
+          class="slds-button slds-button_brand"
+          onclick="{!c.handleSelectedProducts}"
+      /></div>
+      <div class="slds-float_right"
+        ><lightning:button
+          label="Cancel"
+          class="slds-button slds-button_neutral"
+          onclick="{!c.cancel}"
+      /></div>
+    </div>
+  </div>
+</aura:component>
